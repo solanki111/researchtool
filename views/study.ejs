@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Dashboard | Research Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/redirect">Research Tool</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/redirect">Home</a></li>
+                    <!-- <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li> -->
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    <!-- Split button -->
+                    <div class="btn-group" style="margin: 8px;">
+                        <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= username %></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/editprofile">Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+
+
+
+                </ul>
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+    <header id="header">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-10">
+                    <h1><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Dashboard <small>Efficient Research Tool</small></h1>
+
+                </div>
+
+                <div class="col-md-2">
+
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+
+    <section>
+
+        <div></div>
+
+    </section>
+
+    <section id="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+
+                <li class="active">Studies</li>
+
+            </ol>
+        </div>
+    </section>
+
+    <section id="main">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div class="list-group">
+
+                        <a href="/study" class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Study <span class="badge"><%= studiesCount %></span></a>
+
+                    </div>
+
+                </div>
+
+                <!-- ++++ MAIN AREA ++++ -->
+                <div class="col-md-9">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left" style="padding-top: 7.5px;">All your studies</h3>
+                            <button type="button" class="btn btn-primary btn-md pull-right main-color-bg" data-toggle="modal" data-target="#experimentModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Study</button>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <table id="studiesdatatable" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+
+                                        <th>Date Created</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+
+
+                                    <% studies.forEach(function(study){
+                                        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                                        %>
+
+
+                                        <tr>
+
+                                            <td>
+                                                <%= study._id %>
+                                            </td>
+
+                                            <td style="font-weight: bolder;">
+
+                                                <a href="/studies/<%= study._id %>">
+                                                    <%= study.name %>
+                                                </a>
+
+                                                <a href="#renameModal" data-toggle="modal" data-study-id="<%= study._id %>" data-study-name="<%= study.name %>"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+
+                                            </td>
+
+
+                                            <td>
+                                                <%=   study.created.toLocaleDateString("en-US", options) %>
+                                            </td>
+
+                                            <td>
+
+                                                <%  if(study.deleteable){%>
+                                                    <a href="/study/delete/<%= study._id %>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                                    <%}else{%>
+
+                                                        <%}%>
+                                            </td>
+
+
+
+                                        </tr>
+                                        <% }); %>
+
+
+                                </tbody>
+                            </table>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- Experiment Creation Modal -->
+    <div id="experimentModal" class="modal fade" role="dialog" style="position: fixed; top: 50% !important;">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create New Study</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST" action="/study">
+                        <div class="form-group pull-left">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                                <input id="study" type="text" class="form-control" name="study" placeholder="Study Name" required>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-default main-color-bg pull-left">Create</button>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Experiment Rename Modal -->
+    <div id="renameModal" class="modal fade" role="dialog" style="position: fixed; top: 50% !important;">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Rename</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form id="renameform" method="GET" action="/study/rename">
+
+                        <div class="form-group pull-left">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
+                                <input id="study" type="text" class="form-control" name="studynewname" placeholder="Study Name" required>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-default main-color-bg pull-left">Rename</button>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/af.js"></script>
+
+
+
+</body>
+
+</html>

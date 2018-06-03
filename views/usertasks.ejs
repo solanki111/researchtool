@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Dashboard | Research Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+    <link href="/stylesheets/homestyle.css" rel="stylesheet">
+
+    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/redirect">Research Tool</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/redirect">Home</a></li>
+                    <!-- <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li> -->
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    <!-- Split button -->
+                    <div class="btn-group" style="margin: 8px;">
+                        <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= username %></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+
+
+
+                </ul>
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+    <header id="header">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-10">
+                    <h1><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Home <small>Efficient Research Tool</small></h1>
+
+                </div>
+
+                <div class="col-md-2">
+
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+
+
+
+    <section id="main">
+
+        <div class="container">
+            <div class="row">
+
+                <h3>Task Orders</h3>
+
+
+                <ul>
+
+                    <% var i=1; tasks.forEach(function(task){
+                        
+                        
+                        %>
+
+
+                        <li>
+
+                            <h4>
+                                <%= i %>.
+                                    <%= task.name%>
+                                        <a href="<%= task.link%>" target="_blank"> <b>Open Link</b> </a>
+                            </h4>
+                            <br>
+
+                            <div class="form-group">
+                                <label>Task Instructions</label>
+
+                                <textarea class="ckeditor inline-editor cke_editable cke_editable_inline cke_contents_ltr cke_show_borders" name="cktext" id="cktext" required readonly><%= task.instructions%></textarea>
+                            </div>
+
+
+
+                        </li>
+
+                        <br><br>
+
+                        <% i=i+1; }); %>
+                </ul>
+
+
+
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="/js/bootstrap.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            console.log(document.getElementById('instructions').dataset.instructions);
+        });
+    </script>
+</body>
+
+</html>

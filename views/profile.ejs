@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Dashboard | Research Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom theme -->
+
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+
+    <link href="/stylesheets/profile.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="/redirect">Research Tool</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/redirect">Home</a></li>
+                    <!-- <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li> -->
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    <!-- Split button -->
+                    <div class="btn-group" style="margin: 8px;">
+                        <button type="button" class="btn btn-default"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= username %></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+
+
+
+                </ul>
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+
+
+
+
+    <section id="main">
+
+        <div class="form">
+
+            <div>
+                <h2 id="EditProfile1">Edit Profile</h2>
+            </div>
+
+            <form action="/editprofile/update" method="POST">
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Full Name</span>
+                    <input value="<%= user.username %>" type="text" class="form-control" placeholder="Full Name" aria-describedby="basic-addon1" name="username" required>
+                </div>
+
+                <br>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">@ Email</span>
+                    <input value="<%= user.email %>" type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" readonly required>
+                </div>
+
+                <br>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Age</span>
+                    <input value="<%= user.age%>" type="number" class="form-control" placeholder="Age" aria-describedby="basic-addon1" name="age" required>
+                </div>
+
+
+                <br>
+
+
+
+
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Gender</span>
+                    <span class="input-group-addon">
+                              <input type="radio" name="gender" value="male" required>
+                            </span>
+                    <input type="text" class="form-control" value="Male" readonly>
+
+                    <span class="input-group-addon">
+                            <input type="radio" name="gender" value="female">
+                          </span>
+                    <input type="text" class="form-control" value="Female" readonly>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-success pull-right">Update Details</button>
+        </div>
+
+        </form>
+
+
+
+
+
+
+        </div>
+
+
+
+        <div class="form">
+
+            <div>
+                <h2 id="EditProfile1">Change Password</h2>
+            </div>
+
+            <form action="/editprofile/password" method="POST">
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Old Password</span>
+                    <input type="password" id="old_password" class="form-control" placeholder="Old Password" aria-describedby="basic-addon1" name="o_password" required>
+                </div>
+
+                <br>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">New Password</span>
+                    <input type="password" id="new_password" class="form-control" placeholder="New Password" aria-describedby="basic-addon1" name="n_password" required>
+                </div>
+
+                <br>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Confirm Password</span>
+                    <input type="password" id="confirm_password" class="form-control" placeholder="Confirm Password" aria-describedby="basic-addon1" name="c_password" required>
+
+
+                </div>
+
+                <span id='message'></span>
+
+                <br>
+
+
+
+                <br>
+                <button type="submit" id="myBtn" class="btn btn-success pull-right">Change Password</button>
+        </div>
+
+        </form>
+
+
+
+
+
+
+        </div>
+
+
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+
+
+            $('#new_password, #confirm_password').on('keyup', function() {
+                if ($('#new_password').val() == $('#confirm_password').val()) {
+                    $('#message').html('Passwords Match').css('color', 'green');
+
+                } else
+                    $('#message').html('Passwords do not match').css('color', 'red');
+
+            });
+
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

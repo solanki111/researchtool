@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register Login with Authentication</title>
+    <!--Custom Theme files-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> />
+
+
+
+    <!-- Styles -->
+    <link href="/stylesheets/loginstyle.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!--web-fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body>
+
+
+
+    <div id="container" style="width:100%;">
+
+        <div id="left" style="float:left; width:30%;">
+
+            <div class="title">
+                <div class="title-word">User Login</div>
+
+                <div class="title-word small">Research Tool</div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <div class="login" id="right" style="float:right; width:30%; margin-right:10%;">
+
+            <div class="tab">
+
+
+                <button class="link active" onclick="openTab(event, 'signin')">Sign In</button>
+                <button class="link " onclick="openTab(event, 'signup')">Sign up</button>
+
+
+            </div>
+
+
+            <div id="signin" class="tabcontent">
+
+                <form method="POST" action="/">
+
+
+
+
+                    <input type="email" class="text" name="logemail">
+                    <span>email</span>
+
+                    <br>
+
+                    <br>
+
+                    <input type="password" class="text" name="logpassword">
+                    <span>password</span>
+                    <br>
+
+
+                    <button class="signin">
+                        Sign In
+                    </button>
+
+
+                    <hr>
+
+                    <a href="/research">Are you a researcher?</a>
+                </form>
+
+
+
+            </div>
+
+            <div id="signup" class="tabcontent" style="display: none;">
+
+
+                <form method="POST" action="/">
+
+
+
+                    <input type="text" class="text" name="username" required>
+                    <span>Full Name</span>
+
+                    <br>
+
+
+                    <input type="email" class="text" name="email" required>
+                    <span>Email</span>
+
+                    <br>
+
+                    <input type="password" class="text" name="password" required>
+                    <span>password</span>
+                    <br>
+
+
+                    <input type="password" class="text" name="passwordConf" required>
+                    <span>confirm password</span>
+                    <br>
+
+                    <div class="floating-box">
+                        <input type="number" class="text" name="age" required>
+                        <span>Age</span>
+
+                    </div>
+
+                    <br>
+
+                    <div class="floating-box-left">
+                        <fieldset>
+                            <div class="radio-class">
+                                <input type="radio" class="radio" name="gender" value="male" id="y" />
+                                <label for="y">Male</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" class="radio" name="gender" value="female" id="z" />
+                                <label for="z">Female</label>
+                            </div>
+                        </fieldset>
+
+                        <span>Gender</span>
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <button class="signin">
+                        Sign Up
+                    </button>
+
+
+
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="/javascripts/loginscript.js"></script>
+
+</body>
+
+</html>

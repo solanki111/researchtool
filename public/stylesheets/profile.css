@@ -1,0 +1,42 @@
+/* backgorund*/
+
+
+/*content grid*/
+
+
+/*text title*/
+
+
+/*grid*/
+
+
+/*press */
+
+
+/* line */
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #f2f2f2;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    max-width: 800px;
+    height: 380px;
+    /*Need to change */
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px 4px rgba(255, 255, 255, 0.3);
+}
